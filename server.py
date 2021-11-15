@@ -16,11 +16,27 @@ AWESOMENESS = [
 
 @app.route('/')
 def start_here():
-    """Home page."""
+  """Home page."""
+    # <a href="localhost.5000/hello">Come say Hi!</a>
+    # <button onclick="myFunction()">Click me</button>
 
-    return "<!doctype html><html>Hi! This is the home page.</html>"
+  return """<!doctype html>
+                <html>
+                    <body>Hi! This is the home page. 
+                      <a href="/hello">Come say Hi!</a>
+                    </body>
+                </html>"""
+  # return redirect('/hello')
 
-
+# <select name="pets" id="pet-select">
+#     <option value="">--Please choose an option--</option>
+#     <option value="dog">Dog</option>
+#     <option value="cat">Cat</option>
+#     <option value="hamster">Hamster</option>
+#     <option value="parrot">Parrot</option>
+#     <option value="spider">Spider</option>
+#     <option value="goldfish">Goldfish</option>
+# </select>
 @app.route('/hello')
 def say_hello():
     """Say hello and prompt for user's name."""
@@ -36,6 +52,12 @@ def say_hello():
         <form action="/greet">
           What's your name? <input type="text" name="person">
           <input type="submit" value="Submit">
+          <select name="compliments">
+            <option value="awesome">Awesome</option>
+            <option value="terrific">Terrific</option>
+            <option value="fantastic">Fantastic</option>
+            <option value="neato">Neato</option>
+          </select>
         </form>
       </body>
     </html>
@@ -47,8 +69,9 @@ def greet_person():
     """Get user by name."""
 
     player = request.args.get("person")
+    compliment = request.args.get("compliments")
 
-    compliment = choice(AWESOMENESS)
+    # compliment = choice(AWESOMENESS)
 
     return f"""
     <!doctype html>
